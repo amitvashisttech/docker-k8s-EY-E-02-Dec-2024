@@ -68,4 +68,6 @@
   679  docker rm $(docker ps -aq)
   680  docker rmi 1f6ddc1b2547
   681  docker images
+  682  docker rmi $(docker images -q) --force
 ```
+
