@@ -1,4 +1,5 @@
-345  docker kill $(docker ps -qa)
+```
+  345  docker kill $(docker ps -qa)
   346  docker rm $(docker ps -qa)
   347  ls
   348  docker run -d --name test-1 nginx
@@ -34,4 +35,4 @@
   378  docker ps
   379  curl 10.4.3.161:8080
   380  curl 10.4.3.161:32768
-
+```
