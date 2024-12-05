@@ -1,0 +1,16 @@
+services:
+  proxy:
+    image: nginx:alpine
+    ports:
+      - '8079:80'
+
+  python:
+    image: amitvashist7/docker-k8s-ey-e-02-dec-2024-python-webapp:v3 
+    ports:
+      - '8080:5000'
+
+  db:
+    image: httpd
+    ports:
+      - '3306:80'
+
