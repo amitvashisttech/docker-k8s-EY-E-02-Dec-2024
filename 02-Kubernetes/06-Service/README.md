@@ -87,6 +87,7 @@ k8s-control-plane   Ready    control-plane   3h30m   v1.30.0   172.23.0.3    <no
 k8s-worker          Ready    <none>          3h30m   v1.30.0   172.23.0.4    <none>        Debian GNU/Linux 12 (bookworm)   5.15.0-1074-azure   containerd://1.7.15
 k8s-worker2         Ready    <none>          3h30m   v1.30.0   172.23.0.2    <none>        Debian GNU/Linux 12 (bookworm)   5.15.0-1074-azure   containerd://1.7.15
 ```
+```
 root@ubuntugui:~/docker-k8s-EY-E-02-Dec-2024/02-Kubernetes/06-Service# kubectl get po -o wide
 NAME                          READY   STATUS    RESTARTS   AGE   IP            NODE          NOMINATED NODE   READINESS GATES
 helloworld-controller-8qtqx   1/1     Running   0          17m   10.244.1.11   k8s-worker2   <none>           <none>
@@ -115,18 +116,25 @@ helloworld-controller-8qtqx   1/1     Terminating   0          19m   10.244.1.11
 helloworld-controller-9mqpj   1/1     Terminating   0          19m   10.244.2.10   k8s-worker    <none>           <none>
 helloworld-controller-xhzpw   1/1     Running       0          19m   10.244.2.11   k8s-worker    <none>           <none>
 ```
+
+```
 root@ubuntugui:~/docker-k8s-EY-E-02-Dec-2024/02-Kubernetes/06-Service# curl 172.23.0.3:32305/info
 <h2> Hey Python Web Server</h2><b> Hostname: </b> helloworld-controller-xhzpw<br/><b> IP Address: </b> 10.244.2.11<br/>root@ubuntugui:~/docker-k8s-EY-E-02-Dec-2024/02-Kubernetes/06-Service# curl 172.23.0.3:32305/info
 ```
+```
 root@ubuntugui:~/docker-k8s-EY-E-02-Dec-2024/02-Kubernetes/06-Service# kubectl scale --replicas=2 rc helloworld-controller
 replicationcontroller/helloworld-controller scaled
+```
+```
 root@ubuntugui:~/docker-k8s-EY-E-02-Dec-2024/02-Kubernetes/06-Service# kubectl get po -o wide
 NAME                          READY   STATUS    RESTARTS   AGE   IP            NODE          NOMINATED NODE   READINESS GATES
 helloworld-controller-mw8kq   1/1     Running   0          2s    10.244.1.12   k8s-worker2   <none>           <none>
 helloworld-controller-xhzpw   1/1     Running   0          20m   10.244.2.11   k8s-worker    <none>           <none>
+```
+```
 root@ubuntugui:~/docker-k8s-EY-E-02-Dec-2024/02-Kubernetes/06-Service# curl 172.23.0.3:32305/info
 <h2> Hey Python Web Server</h2><b> Hostname: </b> helloworld-controller-xhzpw<br/><b> IP Address: </b> 10.244.2.11<br/>root@ubuntugui:~/docker-k8s-EY-E-02-Dec-2024/02-Kubernetes/06-Service# curl 172.23.0.3:32305/info
-
+```
 ```
 root@ubuntugui:~/docker-k8s-EY-E-02-Dec-2024/02-Kubernetes/06-Service# kubectl get svc
 NAME                    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
