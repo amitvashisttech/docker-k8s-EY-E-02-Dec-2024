@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: coffee-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: coffee
+    http:
+      paths:
+      - path: /latte
+        pathType: Prefix
+        backend:
+          service:
+            name: latte-svc
+            port:
+              number: 80
+      - path: /espresso
+        pathType: Prefix
+        backend:
+          service:
+            name: espresso-svc
+            port:
+              number: 80
